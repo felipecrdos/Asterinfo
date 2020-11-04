@@ -59,14 +59,15 @@ route.post('/save', async (req, res)=>{
 // UPDATE BY ID
 route.put('/update/:id', async (req, res)=>{
     try{
-        const asteroid = await AsteroidModel.updateOne({_id:req.params.id},{$set:{
-            name:req.body.name,
-            diameter:req.body.diameter,
-            sum_distance:req.body.sum_distance,
-            discovery_date:req.body.discovery_date,
-            finder:req.body.finder
-        }})
-        res.json(asteroid)
+        // const asteroid = await AsteroidModel.updateOne({_id:req.params.id},{$set:{
+        //     name:req.body.name,
+        //     diameter:req.body.diameter,
+        //     sum_distance:req.body.sum_distance,
+        //     discovery_date:req.body.discovery_date,
+        //     finder:req.body.finder
+        // }})
+        // res.json(asteroid)
+        res.json({message:"UPDATE", asteroid: req.body})
     }
     catch(err){
         res.json({message:err})
