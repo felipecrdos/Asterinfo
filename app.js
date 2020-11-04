@@ -22,8 +22,8 @@ app.use('/asteroid', route)
 mongo.connect(process.env.DB_CONNECTION, {useNewUrlParser: true, useUnifiedTopology: true}, ()=>{
     console.log("Mongodb connected...")
 })
-const port = 3000
+const port = process.env.PORT || 3000
 const host = 'localhost'
 app.listen(port, host, ()=>{
-    console.log("Server running...")
+    console.log(`Server running on ${host}:${port}`)
 })
