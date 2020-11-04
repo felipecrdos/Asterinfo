@@ -18,14 +18,6 @@ app.use('/createsomedata', async (req, res, next)=>{
     next()
 })
 app.use('/asteroid', route)
-app.get('/', (req, res, next)=>{
-    req.body.date = new Date()
-    next()
-})
-app.get('/', (req, res, next)=>{
-    console.log(req.body)
-    res.status(200).json({msg:"HOME"})
-})
 
 mongo.connect(process.env.DB_CONNECTION, {useNewUrlParser: true, useUnifiedTopology: true}, ()=>{
     console.log("Mongodb connected...")

@@ -1,21 +1,45 @@
 const express = require('express')
+const mongoose = require('mongoose')
 const route = express.Router()
 const AsteroidModel = require('../models/AsteroidModel')
 
 
-route.get('/', async (req, res, next)=>{
+// GET RANDOM
+route.get('/random', async (req, res)=>{
+    try{
+        const len = await AsteroidModel.estimatedDocumentCount()
+        const asteroid = await AsteroidModel.findById(Math.floor(Math.random() * len + 1))
+        res.json(asteroid)
+    }
+    catch(err){
+        res.json(err)
+    }
+})
+
+// GET BY ID
+route.get('/:id', async (req, res)=>{
+    try{
+        const asteroid = await AsteroidModel.findById(req.params.id)
+        res.json(asteroid)
+    }
+    catch(err){
+        res.json({message:err})
+    }
+})
+
+// GET ALL
+route.get('/', async (req, res)=>{
     try{
         const asteroids = await AsteroidModel.find()
-        res.json(asteroids)
+        res.json(asteroids.sort((a, b)=> a._id - b._id))
     }
     catch(err){
         res.json({message: err})
     }
 })
-route.get('/:id', (req, res, next)=>{
-    
-})
-route.post('/save', async (req, res, next)=>{
+
+// POST
+route.post('/save', async (req, res)=>{
     try{
         const asteroid = await AsteroidModel.create({
             _id:req.body._id,
@@ -28,14 +52,36 @@ route.post('/save', async (req, res, next)=>{
         res.json(asteroid)
     }
     catch(err){
-        console.log(res.json({message:err}))
+        res.json({message:err})
     }
 })
-route.put('/update', (req, res, next)=>{
-    
+
+// UPDATE BY ID
+route.put('/update/:id', async (req, res)=>{
+    try{
+        const asteroid = await AsteroidModel.updateOne({_id:req.params.id},{$set:{
+            name:req.body.name,
+            diameter:req.body.diameter,
+            sum_distance:req.body.sum_distance,
+            discovery_date:req.body.discovery_date,
+            finder:req.body.finder
+        }})
+        res.json(asteroid)
+    }
+    catch(err){
+        res.json({message:err})
+    }
 })
-route.delete('/delete', (req, res, next)=>{
-    
+
+// DELETE BY ID
+route.delete('/delete/:id', async (req, res)=>{
+    try{
+        const asteroid = await AsteroidModel.deleteOne({_id:req.params.id})
+        res.json(asteroid)
+    }
+    catch(err){
+        res.json({message:err})
+    }
 })
 
 module.exports = route
