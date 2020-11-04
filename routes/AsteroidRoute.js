@@ -3,7 +3,6 @@ const mongoose = require('mongoose')
 const route = express.Router()
 const AsteroidModel = require('../models/AsteroidModel')
 
-
 // GET RANDOM
 route.get('/random', async (req, res)=>{
     try{
