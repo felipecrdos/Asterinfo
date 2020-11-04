@@ -1,6 +1,6 @@
 # Asterinfo  
 Retorna um json contendo algumas informações sobre asteroides.  
-## URL
+## Host
 > https://asterinfo.herokuapp.com/  
 ## Requisições
 ### Metodos
