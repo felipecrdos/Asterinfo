@@ -18,7 +18,7 @@ route.get('/random', async (req, res)=>{
 // GET BY ID
 route.get('/:id', async (req, res)=>{
     try{
-        const asteroid = await AsteroidModel.findById(req.params.id)
+        const asteroid = await AsteroidModel.find({_id:req.params.id})
         res.json({message:"GET BY ID", asteroid:asteroid})
     }
     catch(err){
@@ -49,7 +49,7 @@ route.post('/save', async (req, res)=>{
         //     finder:req.body.finder
         // })
         // res.json(asteroid)
-        res.json({message:"SAVE", asteroid:req.body})
+        res.json({message:"SAVE", asteroid:[req.body]})
     }
     catch(err){
         res.json({message:err})
@@ -67,7 +67,7 @@ route.put('/update/:id', async (req, res)=>{
         //     finder:req.body.finder
         // }})
         // res.json(asteroid)
-        res.json({message:"UPDATE", asteroid:req.body})
+        res.json({message:"UPDATE", asteroid:[req.body]})
     }
     catch(err){
         res.json({message:err})
@@ -79,8 +79,8 @@ route.delete('/delete/:id', async (req, res)=>{
     try{
         // const asteroid = await AsteroidModel.deleteOne({_id:req.params.id})
         // res.json(asteroid)
-        const asteroid = await AsteroidModel.findById(req.params.id)
-        res.json({message:"DELETED", asteroid:asteroid})
+        const asteroid = await AsteroidModel.find({_id:req.params.id})
+        res.json({message:"DELETE", asteroid:asteroid})
     }
     catch(err){
         res.json({message:err})
