@@ -45,7 +45,7 @@ Retorna um json contendo algumas informações sobre asteroides.
 }
 ```  
 ## Exemplos de uso
-$ curl https://asterinfo.herokuapp.com/asteroid
+$ curl https://asterinfo.herokuapp.com/asteroid  
 $ curl https://asterinfo.herokuapp.com/asteroid/1  
 $ curl https://asterinfo.herokuapp.com/asteroid/random
 
