@@ -26,7 +26,7 @@ Retorna um json contendo algumas informações sobre asteroides.
 ```javascript
 {
   message: String,
-  asteroid:{  
+  asteroid:[{  
     _id:Number,  
     name:String,  
     diameter:Number,  
@@ -34,7 +34,7 @@ Retorna um json contendo algumas informações sobre asteroides.
     discovery_date:String,  
     finder:String,  
     __v:Number
-  } 
+  },...] 
 }
 ```
 * ### Falha
@@ -45,6 +45,7 @@ Retorna um json contendo algumas informações sobre asteroides.
 }
 ```  
 ## Exemplos de uso
+$ curl https://asterinfo.herokuapp.com/asteroid
 $ curl https://asterinfo.herokuapp.com/asteroid/1  
 $ curl https://asterinfo.herokuapp.com/asteroid/random
 
