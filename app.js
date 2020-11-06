@@ -11,6 +11,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+app.set('json spaces', 4)
 
 app.use('/createsomedata', async (req, res, next)=>{
     //util.createSomeData()
